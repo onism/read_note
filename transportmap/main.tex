@@ -9,6 +9,8 @@
 \usepackage{cite}
 \usepackage{indentfirst}
 \usepackage{tikz,mathpazo}
+\usepackage{amsmath}
+\usepackage{amsfonts}
 \usetikzlibrary{shapes.geometric, arrows}
 %%%%%% 设置字号 %%%%%%
 \newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
@@ -140,6 +142,133 @@
 
 
 \newpage
+
+\section{An introduction to sampling via measure transport}
+Given a transport map, one can generate arbitrarilu many
+independent and unweighted samples from
+the target simply by pushig forward reference
+samples through the map.
+
+Imagine generating samples $x_i$ that are
+distributed according to $u_{ref}$ and then applying
+$T$ to each of these samples. Then the
+transformed samples $T(x_i)$ are distributed
+according to $u_{tar}$
+
+
+\begin{itemize}
+\item constructing transport maps given the
+ability to evaluate only the unnormalized
+probability density of the target
+\item constructing transport maps given only
+samples from a distribution of interest, but
+no explicit density.
+\end{itemize}
+
+\subsection{Transport maps and optimal transport}
+Let $u_{tar}\in \mathcal{B}(R^n) \rightarrow R_{+}$
+be a probability measure that we wish to
+characterize, defined over the Borel-$\sigma$-algebra on $R^n$.
+Let $u_{ref}\in \mathcal{B}(R^n) \rightarrow R_{+}$
+be another probability measure from which we gen easily generate independent and unweighted samples,e.g. a standard Gaussian. Then a transport map $T: R^n \rightarrow R^n$ pushes forward $u_{ref}$ to $u_{tar}$ if and only if $u_{tar}(A) = u_{ref}(T^{-1}(A))$ for any set $A \in \mathcal{B}(R^n)$. We can write this compactly as:
+\begin{equation}\label{eq:tansportmapdefine}
+T_{\sharp}u_{ref} = u_{tar}
+\end{equation}
+A transport map $T$ satifying (\ref{eq:tansportmapdefine}) can be understood as a deterministic coupling of two probability measures.
+
+There may be infinitely many such transormations, however. One way of choosing a particular map is to introduce a transport cost $c:R^n \times R^n \rightarrow R$ such that $c(x,z)$ represents the work needed to move a unit of mass from $x$ to $z$. The resulting cost of a particular map is then
+\begin{equation}\label{eq:mapcostdefine}
+C(T) = \int c(x,T(x))du_{ref}(x)
+\end{equation}
+Minimizing (\ref{eq:mapcostdefine}) while simutaneously satisfying (\ref{eq:tansportmapdefine}) corresponds to a problem first posed by Mone in 1781. The solution of this constrained minimization problem is the \emph{optimal transport map}.
+
+\subsection{Direct transport: constructing maps from unnormalized densities}
+In this subsection we show how to construct a transport map that pushes forward a reference measure to the target measure when only evaluations of the \emph{unnormalized target density} are available.
+\subsubsection{Preliminaries}
+We assume that both target and reference measures are absolutely continuous with respect to the Lebesgue measure on $R^n$. Let $\pi$ and $\eta$ be, respectively, the normalized target and reference densities with respect to the Lebesgue measure. We seek a diffeomorphism $T$(a smooth function with smooth inverse) that pushes forward the reference to the target measure,
+\begin{equation}\label{eq:differomorhpism}
+u_{tar} = u_{ref} \circ T^{-1}
+\end{equation}
+where $\circ$ denotes the composition of functions. In terms of densities, we will rewrite (\ref{eq:differomorhpism}) as $\pi = T_{\sharp}\eta $.  $T_{\sharp}\eta$ is the pushforward of the reference density under the map $T$, and it is defined as:
+\begin{equation}
+T_{\sharp}\eta := \eta \circ T^{-1} |det \nabla T^{-1}|
+\end{equation}
+where $\nabla T^{-1}$ denotes the Jacobian of the inverse of the map.
+
+\textbf{if $(x_i)_i$ are independent samples from $\eta$, then $(T(x_i))_i$ are independnt samples from $T_{\sharp}\eta$}. Hence, if we find a transport map $T$ that satisfies $T_{\sharp}\eta = \pi$, then then $(T(x_i))_i$ will be independent samples from the target distribution. In particular, the change of variables formula:
+\begin{equation}
+\int g(x)\pi(x) dx = \int[g \circ T] (x) \eta(x)dx
+\end{equation}
+The map therefore allows for direct computation of posterior expectations.
+\subsubsection{Optimization problems}
+Let $\Upsilon$ be an appropriate set of diffeomorhpisms. Then, any global minimizer of the optimization problem:
+\begin{equation}\label{eq:minimizeropti}
+\begin{aligned}
+min \quad D_{KL}(T_{\sharp}\eta || \pi)\\
+s.t. \quad det \nabla T > 0 \\
+T \in \Upsilon
+\end{aligned}
+\end{equation}
+In fact, any global minimizer of (\ref{eq:minimizeropti}) achieves the minimum cost $D_{KL}(T_{\sharp}\eta || \pi)=0$ and implies that $T_{\sharp}\eta = \pi$. The constraint det $\nabla T >0$ ensures that the pushforward density $T_{\sharp}\eta$ is strictly postive on the support of the target.
+
+AAmong these minimizers, a particularly useful map is given by the Knothe-Rosenblatt rearrangement.
+
+\emph{Carlier, G., Galichon, A., Santambrogio, F.: From Knothe’s transport to Brenier’s map and a continuation
+method for optimal transport. SIAM Journal on Mathematical Analysis 41(6), 2554–2576 (2010)
+}
+
+We can furthe constrain (\ref{eq:minimizeropti}) so that the Knothe-Rosenblatt rearrangement is the unique global minimizer of:
+\begin{equation}\label{eq:minimizeroptiunique}
+\begin{aligned}
+min \quad D_{KL}(T_{\sharp}\eta || \pi)\\
+s.t. \quad det \nabla T \succ 0 \\
+T \in \Upsilon_{\Delta}
+\end{aligned}
+\end{equation}
+where $\Upsilon_{\Delta}$ is now the vector of smooth traingular maps. The constraint $det \nabla T \succ 0$ suffices to enforce invertibility of a feasible triangular map.
+
+Let $\bar{\pi}$ denote any inormailized version of the target density. For any map $T$ in the feasible set of \eqref{eq:minimizeroptiunique}, the object function can be written as:
+\begin{equation}
+D_{KL}(T_{\sharp}\eta || \pi) = D_{KL}(\eta || T_{\sharp}^{-1}\pi ) = \mathbb{E}[-log \bar{\pi} \circ T - log det \nabla T] + \mathfrak{E}
+\end{equation}
+$\mathfrak{E}$ is a term independent of the transport map and thus a constant for the purposes of optimization. The resulting optimization problem reads as:
+
+\begin{equation}\label{eq:intergrationoptimization}
+\begin{aligned}
+min \quad \mathbb{E}[-log \bar{\pi} \circ T - log det \nabla T]\\
+s.t. \quad det \nabla T \succ 0 \\
+T \in \Upsilon_{\Delta}
+\end{aligned}
+\end{equation}
+Notice that we can evaluate the objective of \eqref{eq:intergrationoptimization} given only the unnormalized density $\bar{\pi}$ and a way to compute the integral $\mathbb{E}_{\eta}[\cdot]$. There exist a host of techniques to approximate the integral with respect to the reference measure, including quadrature and cubature formulas, sparse quadratures, Monte Carlo methods, and quasi-Monte Carlo(QMC) methods.
+
+\eqref{eq:intergrationoptimization} is a linearly constrained nonlinear differentiable optimization problem.
+
+\subsubsection{Convergence, bias, and approximate maps}
+A transport map provides a deterministic solution to the problem of sampling from a given unnormalized density, avoiding classical stochastic tools such as MCMC. A major concern in MCMC sampling methods is the lack of clear and generally applicable convergence criteria. In the transport map framework, on the other hand, the convergence criterion is borrowed directly from standard optimization theory.
+
+
+
+The KL divergence $D_{KL}(T_{\sharp}\eta || \pi)$ can be estimated as
+\begin{equation}
+D_{KL}(T_{\sharp}\eta || \pi) \approx \frac{1}{2} \mathbb{V}ar_{\eta} [log \eta - log T_{\sharp}^{-1} \pi]
+\end{equation}
+
+...... Too long.......
+
+
+\subsection{Inverse transport: constructing maps from samples}
+In this section, we assume that the target density is unknown and that we are only given a finite number of samples distributed according to the target measure. We show that under these hypotheses it is possible to efficiently compute an  \emph{ inverse transport}-- a transport map that pushes forward the target to the reference measure -- via convex optimization.
+\subsubsection{Optimization problem}
+
+
+
+
+
+
+
+
+
 \section{Inference via low-dimensional couplings}
 The transport map $T$ can be viewed as a transormation that moves particles : given a collection of samples from $v_{\eta}$ , $T$ rearranges them in accordance with the new distribution $v_{\pi}$
 
@@ -156,5 +285,95 @@ Anderes, E. and Coram, M. (2012). A general spline representation for nonparamet
 \textbf{Yet the construction, representation, and evaluation of all these maps grows challenging in high dimensions.}
 
 The central contribution of this paper is to \textbf{establish a link between the conditional independence structure of the target measure and the existence of special low dimensional coupling. These couplings are induced by transport maps that are sparse or decomposable.}
+
+\begin{itemize}
+\item sparse: A sparse map consists of scalar-valued compnent functions that each depend only a few input variables
+\item decomposable map: A decomposable map factorizes as the exact composition of finitely many functions of low effective dimension(i.e, $T = T_1 \circ ... \circ T_l$, where each $T_i$ differs from the identity map only along a subset of its components).
+\end{itemize}
+
+The utility of thses results is twofold:
+\begin{itemize}
+\item First, they make the construction of couplings tractable for a large class of inference problems.
+\item Second, they suggest new algorithmic approaches for important classed of statistical models.
+\end{itemize}
+
+\subsection{Notation}
+\begin{itemize}
+\item $f \circ g$: the composition of $f,g$
+\item $\partial_k f$ partial derivative of $f$ with respect to its $k$th input variable
+\item $x \rightarrow Qx$: linear map
+\item $T_{\sharp} v$: pushforward measure given by $v \circ T^{-1}$
+\item $T^{-1}(B)$: set-valued preimage of $B$ under T
+\item $T^{\sharp}v$: the pullback measure given by $v \circ T$
+\item $T_{\sharp} \pi$:
+\end{itemize}
+
+\subsection{Triangular transport maps: a building block}
+
+
+
+
+
+\section{An Optimal Transport Formulation of the Linear Feedback Particle
+Filter}
+Based on the concept of optimal transportation, a time-stepping optimization procedure is proposed here to obtain a unique optimal control law, denoted as $\mu_t^*$ and $K_t^*$. In this procedure, a finite time interval is divided into discrete time steps $t_0,...,t_n$.
+Then a discrete time random process, $S_{t_k}$ is constructed by initializing $S_{t_0}$ according to the initial prior $P(X_0)$, and sequentially evolving $S_{t_k} \rightarrow S_{t_{k+1}}$ at each time-step with a map denoted by $T_k$:
+\begin{equation}
+S_{t_{k+1}} = T_k(S_{t_k}),  S_0   P(X_0)
+\end{equation}
+
+% The map $T_k$ is obtained by solving an optimal transportation problem between the conditional probability distributions at time instants $t_{k}$ and $t_{k+1}$, between $P(X_{t_k}|Z_{t_k})$ and $P(X_{t_{k+1}}|Z_{t_{k+1}})$.
+
+
+% By construction, $S_{t_k}$ is distributed according to $P(X_{t_k}|Z_{t_k}).
+
+
+\subsection{Exactness and non-uniqueness}
+
+
+
+
+\section{transportmaps.mit.edu}
+\subsection{Bayesian models}
+Bayesian models arise naturally in statistical inference problems, where the belief represented by a prior probability distribution
+need to be updated according to some observations. We can summarize these models as follows.
+
+Let $G: \mathbb{R}^d \rightarrow \mathbb{R}^{d_z}$ be a map, let $X \in \mathbb{R}^d$ be a random variable with distribution $v_{\rho}$, representing the prior belief on the state of $X$. Let $d \in \mathbb{R}^{d_y}$ be observations of the output of $G$ for some unknown inputs $x \in \mathbb{R}^d$ obtained through the observations. This model for the measurements
+\begin{equation}
+d = f(G(x),\xi)
+\end{equation}
+we defin the posterior distribution $v_{\pi}$ by its density
+\[
+ \pi(x|Y = d) \approx \mu(f^{-1}(G(x),d)) \rho(x) = \mathcal{L}(x) \rho(x)
+ \]
+ $ \mathcal{L}(x)  $ is the likelihood and $  \rho(x)$ is the prior density.
+ \subsubsection{Linear Gaussian model}
+ Let us consider here the linear model $G(x) = Gx$ with additive Gaussian noise
+ \[
+ d = G x + \xi
+ \]
+ This means that the likelihood is defined as
+ \[
+\mathcal{L}_d(x) = \mu(d - Gx)
+ \]
+
+Let the prior distribution on $X$ be Gaussian, $v_{\rho} \sim \mathcal{N}(m_{\rho},\Sigma_{\rho})$.
+
+
+
+
+
+\section{Classical Monge-Kantorovich problem}
+In our simplest exercise we generate two of these random histograms and then try to design a transport plan between them. The concise statement of the problem is
+\[
+min \left\{Tr M^T Z|Z1 = p,Z^T1 = q \right\}
+\]
+where $p,q$ are $m$ vectors representing the mass of the histogram bars for the source and destination histograms, respectively. The matrix $M$ represents the distances between the pairs of historgram bars, i.e. $M_{i,j} = |x_i - y_j|$. The trace formulation of the objective is simply the discrete analogue of the continuous formulation
+\[
+min_{\pi \in \prod(\mu,v)} \int c(x,y)d\pi(x,y)
+\]
+where $\pi(\mu,v)$ for all borel sets $A$ and $B$.  The matrix $Z$ in the discretized problem playes the role of $\pi$ in the continuous formulation, indicating how much mass is to be transfered from points $x$ to point $y$.
+
+
 \end{CJK}
 \end{document}

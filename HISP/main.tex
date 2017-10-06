@@ -1,0 +1,253 @@
+ \documentclass[a4paper, 11pt]{article}
+
+%%%%%% 导入包 %%%%%%
+\usepackage{CJKutf8}
+\usepackage{graphicx}
+\usepackage[unicode]{hyperref}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{cite}
+\usepackage{indentfirst}
+\usepackage{tikz,mathpazo}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usetikzlibrary{shapes.geometric, arrows}
+%%%%%% 设置字号 %%%%%%
+\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
+\newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont}
+\newcommand{\yihao}{\fontsize{28pt}{\baselineskip}\selectfont}
+\newcommand{\erhao}{\fontsize{21pt}{\baselineskip}\selectfont}
+\newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont}
+\newcommand{\sanhao}{\fontsize{15.75pt}{\baselineskip}\selectfont}
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}
+\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}
+\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}
+\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}
+\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont}
+\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}
+
+%%%% 设置 section 属性 %%%%
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+{-1.5ex \@plus -.5ex \@minus -.2ex}%
+{.5ex \@plus .1ex}%
+{\normalfont\sihao\CJKfamily{hei}}}
+\makeatother
+
+%%%% 设置 subsection 属性 %%%%
+\makeatletter
+\renewcommand\subsection{\@startsection{subsection}{1}{\z@}%
+{-1.25ex \@plus -.5ex \@minus -.2ex}%
+{.4ex \@plus .1ex}%
+{\normalfont\xiaosihao\CJKfamily{hei}}}
+\makeatother
+
+%%%% 设置 subsubsection 属性 %%%%
+\makeatletter
+\renewcommand\subsubsection{\@startsection{subsubsection}{1}{\z@}%
+{-1ex \@plus -.5ex \@minus -.2ex}%
+{.3ex \@plus .1ex}%
+{\normalfont\xiaosihao\CJKfamily{hei}}}
+\makeatother
+
+%%%% 段落首行缩进两个字 %%%%
+\makeatletter
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+\makeatother
+\setlength{\parindent}{2em}  %中文缩进两个汉字位
+
+
+%%%% 下面的命令重定义页面边距，使其符合中文刊物习惯 %%%%
+\addtolength{\topmargin}{-54pt}
+\setlength{\oddsidemargin}{0.63cm}  % 3.17cm - 1 inch
+\setlength{\evensidemargin}{\oddsidemargin}
+\setlength{\textwidth}{14.66cm}
+\setlength{\textheight}{24.00cm}    % 24.62
+
+%%%% 下面的命令设置行间距与段落间距 %%%%
+\linespread{1.4}
+% \setlength{\parskip}{1ex}
+\setlength{\parskip}{0.5\baselineskip}
+
+%%%% 正文开始 %%%%
+\begin{document}
+\begin{CJK}{UTF8}{gbsn}
+
+%%%% 定理类环境的定义 %%%%
+\newtheorem{example}{例}             % 整体编号
+\newtheorem{algorithm}{算法}
+\newtheorem{theorem}{定理}[section]  % 按 section 编号
+\newtheorem{definition}{定义}
+\newtheorem{axiom}{公理}
+\newtheorem{property}{性质}
+\newtheorem{proposition}{命题}
+\newtheorem{lemma}{引理}
+\newtheorem{corollary}{推论}
+\newtheorem{remark}{注解}
+\newtheorem{condition}{条件}
+\newtheorem{conclusion}{结论}
+\newtheorem{assumption}{假设}
+
+%%%% 重定义 %%%%
+\renewcommand{\contentsname}{目录}  % 将Contents改为目录
+\renewcommand{\abstractname}{摘要}  % 将Abstract改为摘要
+\renewcommand{\refname}{参考文献}   % 将References改为参考文献
+\renewcommand{\indexname}{索引}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\appendixname}{附录}
+\renewcommand{\algorithm}{算法}
+
+
+%%%% 定义标题格式，包括title，author，affiliation，email等 %%%%
+\title{ 阅读论文综述}
+\author{王俊杰\footnote{电子邮件: wangjunjie2013@gmail.com}\\[2ex]
+\xiaosihao 哈尔滨工业大学\\[2ex]
+}
+\date{}
+
+
+%%%% 以下部分是正文 %%%%
+\maketitle
+
+
+ \begin{tabular}{|c|ccccccccccc|}
+\hline
+正体&$\Gamma$ & $\Delta$ & $\Theta$ & $\Lambda$ & $\Xi$ & $\Pi$ & $\Sigma$ & $\Upsilon$ & $\Phi$ & $\Psi$ & $\Omega$\\
+\hline
+\verb|\mit|斜体&$\mit\Gamma$ & $\mit\Delta$ & $\mit\Theta$ & $\mit\Lambda$ & $\mit\Xi$ & $\mit\Pi$ & $\mit\Sigma$ &  $\mit\Upsilon$ & $\mit\Phi$ & $\mit\Psi$ & $\mit\Omega$\\
+\hline
+\end{tabular}
+
+
+ \begin{tabular}{|lcc|lcc|}
+\hline
+命令 & 大写 & 小写 & 命令 & 大写 & 小写 \\
+\hline
+  alpha & $A$ & $\alpha$ &  beta & $B$ &$\beta$  \\
+  gamma & $\Gamma$ & $\gamma$  &  delta & $\Delta$ & $\delta$ \\
+  epsilon & $E$ & $\epsilon,\varepsilon$ &  zeta & $Z$ & $\zeta$ \\
+   eta & $H$ &$\eta$  &  theta & $\Theta$ & $\theta,\vartheta$ \\
+  iota & $I$ & $\iota$ &   kappa & $K$ & $\kappa$ \\
+  lambda & $\Lambda$ & $\lambda$  & mu & $M$ & $\mu$ \\
+  nu & $N$ & $\nu$ & omicron & $O$ & $o$ \\
+    xi & $\Xi$ & $\xi$  &   pi & $\Pi$ & $\pi,\varpi$ \\
+    rho & $P$ & $\rho,\varrho$  &  sigma & $\Sigma$ & $\sigma,\varsigma$ \\
+   tau & $T$ & $\tau$ &   upsilon & $\Upsilon$ & $\upsilon$ \\
+  phi & $\Phi$ & $\phi,\varphi$ &  chi & $X$ & $\chi$ \\
+  psi & $\Psi$ & $\psi$  &  omega & $\Omega$ &$\omega$ \\
+\hline
+\end{tabular}
+
+
+\newpage
+
+\section{Multi-object filtering with stochastic populations}
+
+
+
+
+\section{Hypothesised filter for independent stochastic populations}
+\emph{J. Houssineau, P. Del Moral, and D. E. Clark. General multi-object filtering and
+association measure. In Computational Advances in Multi-Sensor Adaptive
+Processing (CAMSAP), 5th IEEE International Workshop on, 2013.}
+
+The HISP filter allows to characterise separately the individuals of a population while preserving a sufficiently general modelling of the population dynamics.
+
+$\mathcal{P}(E)$   stands for the  set of probability measures on a given measurable space $(E,\mathcal{E})$, and $u(f) = \int u(dx) f(x)$ for any $u \in \mathcal{P}(E)$ and any bounded measurable function $f$ on $(E,\mathcal{E})$.
+
+Let $\mathfrak{X}$ be the population of interest. At time $t$, individuals in $\mathfrak{X}$ are described in the extended space $\bar{X}_t = \left\{ \psi \right\} \cup X_t$, where $X_t$ is a complete separable metric space, $\psi$ represents the individuals with no image in $X_t$. At time $t$, the observation process represents individuals of $\mathfrak{X}$ in the extended observation space
+$\bar{Z}_t = \left\{ \phi \right\} \cup Z_t$.
+
+
+Let $t_{+}$ denote the time at which an individual in $\mathfrak{X}$ appeared in the state space.
+
+As the estimation within the HISP filter is concerned with individuals only, the space $\bar{X}_t$ is further augmented by the point $\psi$ to account for the unvertainity of the presence of an individual in $\bar{X}_t$ and we denote
+\begin{equation}
+X_t^{+} = \left\{\varphi, \psi \right\} \cup X_t = \left\{\varphi \right\} \cup \bar{X}_t
+\end{equation}
+For any $p_t^x \in \mathcal{P}(X_t^+)$, the scalar $p_t^x(\bar{X}_t)$ is the probability for $x$ to be an individual of $\mathfrak{X}$. The set of all potential individuals at time $t$, before the update, is denoted $X_t$. The set of updated potential individuals represented by $x = (T,y)$ with $T \in [0,t] $ and $y \in Y_t$.
+
+\subsection{The HISP filter}
+\subsubsection{Initialisation}
+At time $t = 0$, no observation has been made available yet so that no individual can be distinguished and the set of individual stochastic representations $X_0$ is such that $X_0 = {x_0}$, with $x_0 = (\left\{0 \right\},())$. The associated law $p_0^{x_0}$ is denoted $p_0^b$ as individuals with representation $x_0$ are thought as being newborn individuals at time $0$.
+
+\subsubsection{Time update}
+Given the independence of the individuals in the population $\mathfrak{X}$, the law $\hat{p}_t^x$ of an individual with representation $x \in \hat{X}_{t-1}$ can be predicted straightforwardly by using the Chapman-Kolmogorov equation with a Markov kernel $M_{t|t-1}$ from $X_{t-1}^+$ to $X_t^+$.
+
+
+For any $x \in X_{t-1}$ and any $x^{'} \in X_t$,
+\begin{equation}
+\begin{aligned}
+& M_{t|t-1}(dx^{'}|x) = p_{S,t}m_{t|t-1}(dx^{'}|x)\\
+& M_{t|t-1}(\varphi|x) =1 - p_{S,t}\\
+& M_{t|t-1}(\psi|\psi) =1 \\
+& M_{t|t-1}(\phi|\phi) =1 \\
+\end{aligned}
+\end{equation}
+
+
+The birth at time $t$ is modelled by a unique individual stochastic representation $x = (\left\{ t \right\},())$ with $p_t^b$ with cardinality distribution $c_t^b$. We assume that $p_t^b(\varphi) = 0$ as newborn individuals exist almost surely.
+
+
+\subsection{Observation update}
+At time $t$, a set of observation in $Z_t$ is received. We denote $\pi$ the partition of $Z_t$ corresponding to the sensor resolution cells. Each resolution cell is represented by a point $z_{w}$ in $Z_t$, which nay be the centre of the cell, and the set $Z_t^+$ is defined as $\left\{z_w,s.t. w \in \pi  \right\}$.
+
+For any $z \in \bar{Z}_t$ and any $x \in X_t^+$, we denote the prior probability of association $p_t^{x,z}$ expressed as
+\begin{equation}
+p
+\end{equation}
+
+
+
+\section{Tracking with MIMO sonar systems: applications
+to harbour surveillance}
+
+The filter follows the usual multi-target tracking assumptions,i.e
+\begin{itemize}
+\item each target's dynamics and observation follow a hidden Markov model, the observation depends only on the current state
+\item targets are independent from each other and generate at most one observation per time step following a Bernoulli process
+\item the clutter is independent from the targets
+\item targets appear anywhere in the field of view and their disapperarance follows another Bernoulli process
+\end{itemize}
+
+The HISP filter can be seen as propagating a collection of hypotheses
+\begin{equation}
+\left\{w_t^i,p_t^i \right\}_{i \in \mathbb{I}_t}
+\end{equation}
+consisting of single-object probability laws $p_t^i$ on the state space $X$ to which is associated a probability of existence $w_t^i$,i.e., a probability for a given law to represent a true object. The index set $\mathbb{I}_t$ can be given an explicit expression based on the  time of creation and of the observation history of a given hypothesis.
+
+The time prediction of the HISP filter can be expressed simply as
+\begin{equation}
+\begin{aligned}
+p_t^i(dx)\overset{f}{=} \int M_t(y,dx)p_{t-1}^i dy\\
+w_t^i = \hat{w}_{t-1}^i
+\end{aligned}
+\end{equation}
+
+For any given $i \in \mathbb{I}_t$ and $z \in Z_t$, the update of the hypothesis with index $i$ by the observation takes the form
+
+\begin{equation}
+\begin{aligned}
+\hat{p}_t^j(dx) \overset{f}{=}  \frac{l_z(x)p_t^i(dx)}{\int l_z(y)p_t^i(dy)}\\
+\hat{w}_t^i =  \frac{w_{ex}(i,z)w_t^{iz}}{\sum_{z \in Z_t} w_{ex}(i,z)w_t^{iz}}
+\end{aligned}
+\end{equation}
+where $j$ is an index in the observation-updated set $\hat{\mathbb{I}}_t$, where $w_t^{i,z} = \int l_z(x)p_t^i(dx)$ is the compatibility between the prior law ith index $i$ and the observation. $w_{ex}(i,z)$ is a scalar in the interval $[0,1]$ describing the compatibility between the hypotheses indexed by $\mathbb{I}_t \setminus \left\{i\right\}$ and $Z_t \setminus \left\{ z\right\}$
+
+\section{A SEQUENTIAL MONTE CARLO APPROXIMATION OF THE HISP FILTER}
+\textcolor{red}{It is assumed that each observation does not correspond to more than one individual, so that, if two individuals have their projection on $Z_t$ in the same resolution cell, then only one of them can be detected at the same time.}
+
+\subsection{Population modelling}
+\subsubsection{State}
+We start with individuals that have already been detected once and can therefore be distinguished by their observation history, or \emph{observation path}. At time $t \in \mathbb{T}$, the set all possible observation paths can be indexed by the set $\bar{Y} = \bar{Z}_0 \times ... \times \bar{Z}_t$. An interval of existence $T \in \mathbb{T}$ of the form $[t^{'},t]$ is conveniently added to the characterisation of individuals.
+
+We are now in position to build a full index set in which each individual in the extended population,i.e., the one containing the objective population and the spurious-observation generators, is given a unique index. Before the observation update at time $t$, this index set is defined as
+\begin{equation}
+\mathbb{I}_t = \mathbb{I}_t^m \cup \left\{i_t^a,i_t^b \right\}
+\end{equation}
+where, denoting $[\cdot,t]$ the abstrct time interval ending at time $t$, $\mathbb{I}_t^m = \left\{(\sharp,[\cdot,t],y): y \in Y_{t-1} \right\}$ corresponds to the detected individuals, where $i_t^a = (\sharp,{t},\phi_t)$ describes newborn individuals, where the spurious-observation generators index is $i_t^b = (b,\emptyset,\phi_t)$.
+
+\end{CJK}
+\end{document}
