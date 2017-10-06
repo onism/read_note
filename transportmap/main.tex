@@ -260,6 +260,11 @@ D_{KL}(T_{\sharp}\eta || \pi) \approx \frac{1}{2} \mathbb{V}ar_{\eta} [log \eta 
 \subsection{Inverse transport: constructing maps from samples}
 In this section, we assume that the target density is unknown and that we are only given a finite number of samples distributed according to the target measure. We show that under these hypotheses it is possible to efficiently compute an  \emph{ inverse transport}-- a transport map that pushes forward the target to the reference measure -- via convex optimization.
 \subsubsection{Optimization problem}
+The inverse transport pushes forward the target to the reference measure:
+\[
+\mu_{\ref} = \mu_{tar} \circ S^{-1}
+\]
+
 
 
 
@@ -359,6 +364,29 @@ we defin the posterior distribution $v_{\pi}$ by its density
 
 Let the prior distribution on $X$ be Gaussian, $v_{\rho} \sim \mathcal{N}(m_{\rho},\Sigma_{\rho})$.
 
+\textbf{Feedback particle filter:} The feedback particle filter for linear Gaussian problem is given by
+
+
+\subsection{Background on optimal transportation}
+Let $P_X$ and $P_Y$ be two given probability measures on $\mathbb{R}^d$ with finite second moments. The optimal transportation problem is to minimize
+\[
+ min_T \quad E[(T(x) - x)^2]
+\]
+over all maps $T: \mathbb{R}^d \rightarrow \mathbb{R}^d$ such that:
+\[
+X \sim P_X, \quad T(x) \sim P_Y
+\]
+If it exists, the minimizer $T^*$, is called the optimal transport map between $P_X$ and $P_Y$. The optimal cost is referred to as $L^2-$Wasserstein distance between $P_X$ and $P_Y$.
+
+\subsubsection{Optimal map between Gaussians}
+Suppose $P_X$ and $P_Y$ are Gaussian distributions, $\mathcal{N}(X,\Sigma_X)$ and $\mathcal{N}(Y,\Sigma_Y)$. Then the optimal transport map between $P_X$ and $P_Y$ is given by:
+\[
+T(x) = Y + F(x - X)
+\]
+where
+\[
+F = \Sigma_Y^{\frac{1}{2}}(\Sigma_Y^{\frac{1}{2}} \Sigma_X \Sigma_Y^{\frac{1}{2}})^{-\frac{1}{2}}\Sigma_Y^{\frac{1}{2}}
+\]
 
 
 
