@@ -142,6 +142,110 @@
 
 
 \newpage
+\tableofcontents
+
+
+\section{A filter for distinguishable and independent
+populations}
+The level of information maintained by the filter on any particular target depends on its status:
+\begin{itemize}
+\item \emph{distinguishable}: individuals are those for which specific information is available, usually through the sensor observation process(past or present).
+\item \emph{indistinguishable}: individuals, on the other hand, are those that are known only as members of a larger population whose individuals share a common description.
+\end{itemize}
+\subsection{Bayesian Estimation with Stochastic Populcations}
+In the context of the DISP filter, we shall consider the following assumptions.
+
+\textbf{Modelling assumptions.} \emph{Individuals in the population $\mathcal{X}$ of interest:}
+\begin{itemize}
+  \item (M1) behave independently;
+  \item (M2) enter the scene at most once during the scenario
+  \item (M3) all have state $\psi$ before $t=0$
+\end{itemize}
+Following these assumptions, the population $\mathcal{X}$ shall be decomposed at any time $t \geq 0$
+\[
+\mathcal{X} = \mathcal{X}_t^{\psi} \cup \mathcal{X}_t^{\bullet} \cup \mathcal{X}_t^{*}
+\]
+
+\textbf{Modelling assumptions.} \emph{The observation process at any time $t \geq 0$ is such that}
+\begin{itemize}
+  \item  (M4) an individual produces at most one observation(if not, it is miss-detected);
+  \item  (M5) an observation originates from at most individual(if not, it is a false alarm);
+  \item  (M6) individuals outside the scene produce no observations;
+  \item  (M7) observations are produced independently;
+  \item  (M8) observations are distinct
+  \item  (M9) the number of observations is finite
+\end{itemize}
+
+
+\textbf{Modelling assumptions.} \emph{First detection}
+\begin{itemize}
+  \item  (M10) an individual is detected upon entering the scene
+\end{itemize}
+
+\textbf{Modelling assumptions.} \emph{Prior information}
+\begin{itemize}
+  \item  (M11)  global information on the population $\mathcal{X}_t^{\bullet}$ is available, but no specific information is available on any of its individuals
+\end{itemize}
+
+\textbf{Modelling assumptions.} \emph{At any time $t \geq 0$, the knowledge of the operator about:}
+\begin{itemize}
+  \item  (M12) the evolution of the individuals in $\mathcal{X}$ since time $t-1$ is described by a Markov kernel $m_{t-1,t}$
+  \item  (M13) the observation process is described by a likelihood $g_t(z,\cdot)$ and a probability of false alarm $p_{fa,t}$
+\end{itemize}
+\subsection{DISP filter: Target Representation}
+The DISP filter maintains a representation of the appearing individuals  $\mathcal{X}_t^{\bullet}$ as a stochastic population of indistinguishable targets, composed of:
+\begin{itemize}
+  \item a cardinility distribution $\hat{c}_t^a$, describing the number of appearing targets;
+  \item a single probability distribution $\hat{p}_t^a$ collectively describing the initial state of any appearing targets.
+\end{itemize}
+
+A distinguishable target which entered the scene at some birth time $0 \neq t_{\bullet} \neq t$ is characterised by the following 3-tuple or track
+\[
+(t_{\bullet},y,p_t^y)
+\]
+where $t_{\bullet}$ is its time of birth, $y$ its observation path, and $p_t^y$ a probability distribution describing its current state. The observation path $y$ is s sequence of observations
+\[
+y = (\phi,...,\phi,z_{td},z_{t_ {d + 1}},...,z_t)
+\]
+
+The current set of all possible observation paths is denoted by $Y_t$. An \emph{hypothesis} $h$ is defined as a given subset of observation paths in $Y_t$ that represents a realisation of the stochastic population,i.e. a possible representation of the estimated population, described by the product measure
+\[
+p_t^h = \bigotimes_{y \in h} p_t^y
+\]
+The DISP filter maintains various representations of rhe estimated populcation through a weighted set of hypotheses $H_t$; whose weights are given by a distribution $c_t$ on $H_t$ satisfying
+\[
+\sum_{h \in H_t} c_t(h) = 1
+\]
+For any hypothesis $h \in H_t$ the scalar $c_t(h)$ assesses its credibility,i.e. the likelihood that the tracks in $h$ represent the individuals from the estimation population. It is called the probability of existence of hypotheis $h$.
+
+\subsection{Prediction}
+
+$t=0$, the set of hypotheses $H_{-1}$ is reduced to the singletion
+\[
+H_{-1} = \left\{ \emptyset^d \right\}
+\]
+and
+\[
+c_{-1}(\emptyset^d) = 1
+\]
+\subsubsection{Track prediction}
+The information gathered so far by the operator on any target $y \in Y_{t-1}$, described  by some distribution $p_{t-1}^y$ on the former state space $\bar{X}_{t-1}$, is then transferred to the current state space $\bar{X}_t$ through the Markov kernel $m_{t-1,t}$
+\subsubsection{Hypothesis prediction}
+Since the observation set $Z_t$ is not available yet, neither the observation paths in $Y_{t-1}$ nor the composition of the hypotheses in $H_{t-1}$ are modified by the prediction step.
+\subsection{DISP filter: Data Update}
+
+
+\section{Novel Multi-Object Filtering Approach for Space
+Situational Awareness}
+
+Popular track-based solutions include the MHT and JPDA filters and follow an intuitive construction in which sequences of observations that may represent the data originating from a single specific object are maintained as tracks. They do not maintain a probabilisitc description of the dynamical evolution of the population of objects and rely on herustics and expert knowledge in order to determine, for example, at which point a stream of observations is assumed to be sufficient evidence for the creation of new track, or at which point a track is considered lost.
+
+\subsection{Multi-Object Estimation with DISP filter}
+
+
+\section{Multi-target filtering with linearised complexity}
+
+
 
 \section{Multi-object filtering with stochastic populations}
 

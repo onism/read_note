@@ -402,6 +402,13 @@ min_{\pi \in \prod(\mu,v)} \int c(x,y)d\pi(x,y)
 \]
 where $\pi(\mu,v)$ for all borel sets $A$ and $B$.  The matrix $Z$ in the discretized problem playes the role of $\pi$ in the continuous formulation, indicating how much mass is to be transfered from points $x$ to point $y$.
 
+\section{Optimal Transport Filtering with Particle Reweighing in Finance}
+
+Particle flow filter(daum) allows the reduction of the number of particles we need in order to get a tolerable level of errors in the filtering problem. The main idea behind this method is the evolution in homotopy parameter $\lambda$ from prior to the target density. The introduced a particle flow, in which particles are gradually transported without the necessity to randomly sample from any distribution.
+
+The idea of transportation and rewighing mechanism is to transport particles through the sequence of densities that move the least during the synthetic time until they reach the posterior distribution. By regenerating particles according  to their weight at each time step we are able to direct the flow and further minimize the variance of the estimates.
+
+
 
 \end{CJK}
 \end{document}
