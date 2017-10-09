@@ -11,6 +11,7 @@
 \usepackage{tikz,mathpazo}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{pythonhighlight}
 \usetikzlibrary{shapes.geometric, arrows}
 %%%%%% 设置字号 %%%%%%
 \newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
@@ -262,8 +263,94 @@ In this section, we assume that the target density is unknown and that we are on
 \subsubsection{Optimization problem}
 The inverse transport pushes forward the target to the reference measure:
 \[
-\mu_{\ref} = \mu_{tar} \circ S^{-1}
+\mu_{ref} = \mu_{tar} \circ S^{-1}
 \]
+We focus on the inverse trangular transport because it can be computed via convex optimization given samples from the target distribution. It is easy to see that the monotone increasing Knothe-Rosenblatt ewarrangement that pushes forward $\mu_{tar}$ to $\mu_{ref}$ is the unique minimizer of
+
+\begin{equation}\label{eq:minimizeroptiuniqueoptimization}
+\begin{aligned}
+min \quad D_{KL}(T_{\sharp}\eta || \pi)\\
+s.t. \quad det \nabla S \succ 0 \\
+S \in \mathcal{T}_{\Delta}
+\end{aligned}
+\end{equation}
+For any map $S$ in the feasible set of \eqref{eq:minimizeroptiuniqueoptimization}, the objective function can be written as:
+\begin{equation}\label{eq:objectfunction}
+\begin{aligned}
+  D_{KL}(S_{\sharp}\eta || \pi) & = D_{KL}(  \pi || S_{\sharp}^{-1}\eta )\\
+& = \mathbb{E}_{\pi} [-log \eta \circ S - log det \nabla S ] + \mathfrak{e}
+\end{aligned}
+\end{equation}
+where $\mathfrak{e}$ is a term independent of the transport map and thus a constant for the purposes of optimization. The resulting optimization problem is a stochastic program given by
+\begin{equation}\label{eq:stochasticprogram}
+\begin{aligned}
+ \min \quad \mathbb{E}_{\pi} [-log \eta \circ S - log det \nabla S ]\\
+ s.t. \quad det \nabla S \succ 0 \\
+S \in \mathcal{T}_{\Delta}
+\end{aligned}
+\end{equation}
+
+A sample-average approximation(SAA) of \eqref{eq:stochasticprogram} is given by:
+
+\begin{equation}\label{eq:saa}
+\begin{aligned}
+ \min \quad \frac{1}{M} \sum_{i=1}^M [-log \eta (S(z_i)) - log det \nabla S(z_i) ]\\
+ s.t. \quad  \partial_k S^k \succ 0 \\
+S \in \mathcal{T}_{\Delta}
+\end{aligned}
+\end{equation}
+
+\subsubsection{Convexity and separability of the optimization problem}
+Let the reference measure be standard Gaussian. In this case, \eqref{eq:saa} can be written as
+\begin{equation}\label{eq:saagaussian}
+\begin{aligned}
+ \min \quad \frac{1}{M} \sum_{i=1}^M \sum_{k=1}^n \left[ \frac{1}{2}(S^k)^2(z_i) - log \partial_k S^k(z_i) \right]\\
+ s.t. \quad  \partial_k S^k \succ 0 \\
+S \in \mathcal{T}_{\Delta}
+\end{aligned}
+\end{equation}
+
+All the components of the inverse transport can be computed independently and in parallel by solving optimization problems.
+\subsubsection{Computing the inverse map}
+We recommend running a few Newton iterations of the form
+\[
+z_{j+1} = z_j - \nabla S(z_j)^{-1}(S(z_j) - x*)
+\]
+An alternative way to evaluate the direct transport is to build a parametric representation of $T$ itself via standard regression techniques. In particular, if $\left\{z_1,...z_M \right\}$ are samples from the target distribution, then $\left\{x_1,...,x_M \right\}$, with $x_k := S(z_k)$ for $k=1,...,M$, are samples from the reference distribution. We can use these pairs of samples to define a simple constrained least-squares problem to approximate the direct transport as:
+
+\begin{equation}\label{eq:saagaussian}
+\begin{aligned}
+ \min \quad \frac{1}{M} \sum_{i=1}^M \sum_{k=1}^n (T^i(x_k) - z_k)^2 \\
+ s.t. \quad  \partial_k T^k \succ 0 \\
+T \in \mathcal{T}_{\Delta}
+\end{aligned}
+\end{equation}
+
+\subsection{Parameterization of transport maps}
+We must define finite-dimensional approximation spaces(e.g. $\mathcal{T}_{\Delta}^h$) within which we search for a best map.
+
+\subsubsection{Polynomial representations}
+A natural way to parameterize each component of the map $T$ is by expanding it in a basis of multivariate polynomials. The univariate polynomials can be chosen from any standard orthogonal polynomial family(e.g., Hermite, Legendre, Laguerre) or they can even be monomials.
+
+I use the scipy.special package to implement the hermit. The example code is as follows:
+
+Hermit Polynomial univariate:
+\[
+H_k = (-1)^k e^{x^2/2} d_x^k e^{-x^2/2}
+\]
+
+\inputpython{'src/hermite.py'}{0}{37}
+
+
+Use multivariate polynomials, we can express each component of the transport map as
+\begin{equation}\label{eq:transportmappoly}
+T^k(x) = \sum_{j \in \mathcal{J}_k} \gamma_{k,j} \psi_j(x),k=1,...,n
+\end{equation}
+where $\mathcal{J}$ is a set of multi-indices defining the polynomial terms in the expansion for dimension $k$ and $\gamma$ is a scalar coefficient.
+
+\subsubsection{Radial basis functions}
+An alternative to a polynomial parameterization of the map is to employ a combination of linear term and radar basis functions. This representation can be more efficient than a polynomail representation in certain cases.
+
 
 
 

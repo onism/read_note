@@ -1,0 +1,288 @@
+ \documentclass[a4paper, 11pt]{article}
+
+%%%%%% 导入包 %%%%%%
+\usepackage{CJKutf8}
+\usepackage{graphicx}
+\usepackage[unicode]{hyperref}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{cite}
+\usepackage{indentfirst}
+\usepackage{tikz,mathpazo}
+\usetikzlibrary{shapes.geometric, arrows}
+%%%%%% 设置字号 %%%%%%
+\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
+\newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont}
+\newcommand{\yihao}{\fontsize{28pt}{\baselineskip}\selectfont}
+\newcommand{\erhao}{\fontsize{21pt}{\baselineskip}\selectfont}
+\newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont}
+\newcommand{\sanhao}{\fontsize{15.75pt}{\baselineskip}\selectfont}
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}
+\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}
+\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}
+\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}
+\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont}
+\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}
+
+%%%% 设置 section 属性 %%%%
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+{-1.5ex \@plus -.5ex \@minus -.2ex}%
+{.5ex \@plus .1ex}%
+{\normalfont\sihao\CJKfamily{hei}}}
+\makeatother
+
+%%%% 设置 subsection 属性 %%%%
+\makeatletter
+\renewcommand\subsection{\@startsection{subsection}{1}{\z@}%
+{-1.25ex \@plus -.5ex \@minus -.2ex}%
+{.4ex \@plus .1ex}%
+{\normalfont\xiaosihao\CJKfamily{hei}}}
+\makeatother
+
+%%%% 设置 subsubsection 属性 %%%%
+\makeatletter
+\renewcommand\subsubsection{\@startsection{subsubsection}{1}{\z@}%
+{-1ex \@plus -.5ex \@minus -.2ex}%
+{.3ex \@plus .1ex}%
+{\normalfont\xiaosihao\CJKfamily{hei}}}
+\makeatother
+
+%%%% 段落首行缩进两个字 %%%%
+\makeatletter
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+\makeatother
+\setlength{\parindent}{2em}  %中文缩进两个汉字位
+
+
+%%%% 下面的命令重定义页面边距，使其符合中文刊物习惯 %%%%
+\addtolength{\topmargin}{-54pt}
+\setlength{\oddsidemargin}{0.63cm}  % 3.17cm - 1 inch
+\setlength{\evensidemargin}{\oddsidemargin}
+\setlength{\textwidth}{14.66cm}
+\setlength{\textheight}{24.00cm}    % 24.62
+
+%%%% 下面的命令设置行间距与段落间距 %%%%
+\linespread{1.4}
+% \setlength{\parskip}{1ex}
+\setlength{\parskip}{0.5\baselineskip}
+
+%%%% 正文开始 %%%%
+\begin{document}
+\begin{CJK}{UTF8}{gbsn}
+
+%%%% 定理类环境的定义 %%%%
+\newtheorem{example}{例}             % 整体编号
+\newtheorem{algorithm}{算法}
+\newtheorem{theorem}{定理}[section]  % 按 section 编号
+\newtheorem{definition}{定义}
+\newtheorem{axiom}{公理}
+\newtheorem{property}{性质}
+\newtheorem{proposition}{命题}
+\newtheorem{lemma}{引理}
+\newtheorem{corollary}{推论}
+\newtheorem{remark}{注解}
+\newtheorem{condition}{条件}
+\newtheorem{conclusion}{结论}
+\newtheorem{assumption}{假设}
+
+
+
+
+%%%% 定义标题格式，包括title，author，affiliation，email等 %%%%
+\title{ 阅读论文综述}
+\author{王俊杰\footnote{电子邮件: wangjunjie2013@gmail.com}\\[2ex]
+\xiaosihao 哈尔滨工业大学\\[2ex]
+}
+\date{}
+
+
+%%%% 以下部分是正文 %%%%
+\maketitle
+
+
+ \begin{tabular}{|c|ccccccccccc|}
+\hline
+正体&$\Gamma$ & $\Delta$ & $\Theta$ & $\Lambda$ & $\Xi$ & $\Pi$ & $\Sigma$ & $\Upsilon$ & $\Phi$ & $\Psi$ & $\Omega$\\
+\hline
+\verb|\mit|斜体&$\mit\Gamma$ & $\mit\Delta$ & $\mit\Theta$ & $\mit\Lambda$ & $\mit\Xi$ & $\mit\Pi$ & $\mit\Sigma$ &  $\mit\Upsilon$ & $\mit\Phi$ & $\mit\Psi$ & $\mit\Omega$\\
+\hline
+\end{tabular}
+
+
+ \begin{tabular}{|lcc|lcc|}
+\hline
+命令 & 大写 & 小写 & 命令 & 大写 & 小写 \\
+\hline
+  alpha & $A$ & $\alpha$ &  beta & $B$ &$\beta$  \\
+  gamma & $\Gamma$ & $\gamma$  &  delta & $\Delta$ & $\delta$ \\
+  epsilon & $E$ & $\epsilon,\varepsilon$ &  zeta & $Z$ & $\zeta$ \\
+   eta & $H$ &$\eta$  &  theta & $\Theta$ & $\theta,\vartheta$ \\
+  iota & $I$ & $\iota$ &   kappa & $K$ & $\kappa$ \\
+  lambda & $\Lambda$ & $\lambda$  & mu & $M$ & $\mu$ \\
+  nu & $N$ & $\nu$ & omicron & $O$ & $o$ \\
+    xi & $\Xi$ & $\xi$  &   pi & $\Pi$ & $\pi,\varpi$ \\
+    rho & $P$ & $\rho,\varrho$  &  sigma & $\Sigma$ & $\sigma,\varsigma$ \\
+   tau & $T$ & $\tau$ &   upsilon & $\Upsilon$ & $\upsilon$ \\
+  phi & $\Phi$ & $\phi,\varphi$ &  chi & $X$ & $\chi$ \\
+  psi & $\Psi$ & $\psi$  &  omega & $\Omega$ &$\omega$ \\
+\hline
+\end{tabular}
+
+
+\newpage
+\tableofcontents
+\newpage
+\section{On CPHD Filters With Track Labeling}
+\subsection{The distribution and p.g.fl.'s LRFS's}
+In LRFS theory, the state of a target has the form $(x,l)$, where $x$ is an element of some region of a Euclidean space, and where $l$ is an element of a countable set of distince labels.
+
+Given this, a multitarget state is a finite set
+\begin{equation}
+X = \left\{(x_1,l_1),...,(x_n,l_n) \right\}
+\end{equation}
+If $f(x,l)$ is a function of the variable $x = (x,l)$ which is integrable with respect to $x$ and is such that $f(x,l) = 0$ identically for all but a finite number of $l \in L$, then its integral is
+\begin{equation}
+\int f(x)dx = \sum_{l \in L} \int f(x,l)dx
+\end{equation}
+The set integral of a function $f(X)$ of a finite-set variable $X$ is
+\begin{equation}
+\int f(X)\delta X = \sum_{n \geq 0} \frac{1}{n!} \int f(x_1,...x_n)dx_1...,x_n = \sum_{n \geq 0} \frac{1}{n!} \sum_{l_1,...l_n \in L^n}f( (x_1,l_1),...(x_n,l_n)dx_1...,x_n
+\end{equation}
+
+ \subsection{GLMB distribution}
+ A probability distribution $f(X)$ is a GLMB distribution if it has the following form:
+ \begin{equation}
+f(X) = \delta \sum_{o \in O} w_o (X) s_o^X
+ \end{equation}
+where $O$ is a finite set of indices $o$.$s_{o,l}(x) = s_o(x,l)$ is the track distribution corresponding to the track label $l$. The p.g.fl. of a GLMB distribution is
+\begin{equation}
+G[h] = \sum_{o \in O} \sum_{L \in \mathcal{L}}w_o(L) \prod_{l \in L} s_{o,l} [h]
+\end{equation}
+
+A LMB distribution is a mono-GLMB distribution such that $w(L)$ has the form
+\begin{equation}
+w^J(L) = \prod_{l \in J - L}(1 - q_l) \prod_{l\ in L} (q_l \textbf{1}_L(l))
+\end{equation}
+Its p.g.fl is
+\begin{equation}
+G[h] = \prod_{l \in J} (1 - q_l + q_l * sl[h])
+\end{equation}
+\subsection{Labeled PHD filter}
+\subsubsection{LPHD prediction}
+Let the target-appearance and posterior p.g.fl.'s at time $k$ be, respectively,
+\begin{equation}
+G_{k+1|k}^B[h] = \prod_{l \in L_B}(1 - q_{l,B}^{k+1} + q_{l,B}^{k+1}s_{l,B}^{k+1}[h])
+\end{equation}
+\begin{equation}
+G_{k|k}[h] = \prod_{l \in L_{k|k}}(1 - q_l^{k|k} + q_{l}^{k|k}s_{l}^{k|k}[h])
+\end{equation}
+Then the time updated p.g.fl. is
+\begin{equation}
+G_{k+1|k}[h] = \prod_{l \in L_{k+1|k}} (1 - q_l^{k+1|k} + 1_l^{k+1|k} s_l^{k+1|k})[h]
+\end{equation}
+\subsubsection{LPHD update}
+
+
+
+
+\section{Association-Free Direct Filtering of Multi-Target Random Finite Sets with Set Distance Measures}
+For recursive Bayesian filtering, we now face two problems:
+\begin{itemize}
+\item Prior density and measurement density are given by collection of particles only
+\item The assoication of target between particle densities is unknown
+\end{itemize}
+Traditional MTT algorithms employ a joint state vector that contains the individual target states and aimt at minimizing the MSE of the estimate.
+\subsection{Distance Measure}
+
+
+\section{Artificial neural network training utilizing the smooth variable
+structure filter estimation strategy}
+
+\subsection{Traditional ANN training techniques}
+BP is one of the first used techniques in training of multilayer perceptrons. BP is a first order stochastic gradient decent method that iteratively searches for link weights that minimize the output error in a supervised manner.  Quasi-Newton method demonstrated better convergence performance than the standard BP algorithm, but it requres large memory storage to store the Hessian matrix.
+\subsection{State estimation-based ANN training}
+A new hybird learning algorithm that comines the EKF and particle filter has been presented. The new training scheme provides faster speed of convergence than the stand-alone EKF.
+\subsection{Feed-forward multilayered neural network}
+The operation of node $(n+1,i)$ is described by the following eqution
+\begin{equation}
+x_i^{n+1}(t) = \varphi (\sum_{j=1}^{N_n -1}w_{i,j}^nx_j^n(t) + b_i^{n+1})
+\end{equation}
+\subsection{Global and decoupled EKF-based NN training}
+The EKF has been tailored to train feed-forward neural networks by formulating the network as a filtering problem. Accordingly, feed-forward multilayer perception network behavior can be described by a nonlinear discrete time state space representation such that
+\begin{equation}
+w_{k+1} = w_k + \omega_k
+\end{equation}
+\begin{equation}
+y_k =  C_k(w_k,u_k) + v_k
+\end{equation}
+It demonstrates the neural network as a stationary system with an additional zero-mean, white system noise $\omega_k$ with a covariance described by $[\omega_k \omega_l^T] = \delta_{k,l}Q_k$. Neural network weights and biases $w_k$ are regarded as the system's state. Meausrement function is a nonlinear equation relating network desired response $y_k$ to the network input $u_k$ and weights $w_k$.
+
+\section{DNN and swithching kalman filter based continuous affect recognition}
+The DD-SKF framework firstly models the complex nonlinear relationship between the input features and the affective dimensions via the non-recurrent DNN, then models the temporal dynamics embedded in the emotions via the segmental linear SKF.
+
+
+
+\section{The Adaptive LMB filter}
+This paper proposes a new multi-Bernoulli filter called the Adaptive
+LMB filter. It combines the relative strengths of the known $\delta$-GLMB
+and the LMB filter.
+
+\subsection{introduction}
+The aim of MTT is the estimation of the number of objects as well as their
+individual states based on noisy measurements, where missed detections and false
+alarms lead to ambiguities in the track-to-measurement association.
+
+The adaptive LMB filter is proposed which automatically switches between
+an LMB and $\delta$-GLMB representation based on KL divergence and
+entropy.
+
+\subsection{LMB RFS}
+In a multi-object scenario, it is often required to estimate the identity
+of an object in addition to its current state. A labeled RFS is an RFS
+on $X \times L$ with state space $X$ and finite label space $L$. A LMB RFS is
+completely defined by the parameter $\left\{(r^l,p^l) \right\}_{l \in L}$
+and its density is given by
+\begin{equation}
+\bold{\pi}(X) = \Delta(X)w(L(x))p^X
+\end{equation}
+where
+\begin{equation}
+w(L) = \prod_{i \in L}(1 - r^i) \prod_{l\in L} \frac{1_L(l)r^l}{1 - r^l}
+\end{equation}
+
+\subsection{switch criteria}
+The aim of the ALMB filter is to switch automatically between the LMB approximation,
+facilitating a fast propogation of the density, and the more accurate
+$\delta$-GLMB density.
+\subsubsection{KL criterion}
+It is shown that the LMB approximation loses information about the
+cardinality distribution. Thus, an intuitive way to detect the information loss, is
+to examine the difference between the posterior cardinality distribution of the
+$\delta$-GLMB RFS and its LMB approximation.
+
+\subsubsection{Entropy Criterion}
+The KL criterion does not detect challenging situations with ambiguous
+data association if the cardinality distributions are identical. Hence,
+a measure for the data association uncertainty is required which enables
+a switching to the more accurate $\delta$-GLMB representation in these
+situations.
+
+\section{Average Marginal Density Based Distributed Multichannel Fusion for Multi-target Tracking}
+
+
+\section{Distributed localisation of sensors with partially overlapping field-of-views in fusion networks}
+\subsection{Abstract}
+Each sensor has a partially overlapping FoV with its neighbours, and, collects both target originated and spurious measurements. We are interested in estimating the locations of the sensors in a network coordinate system using only these measurements.
+
+
+\section{Multiple Object Tracking in Unknown Backgrounds with Labeled Random Finite Sets}
+
+
+
+
+
+
+\end{CJK}
+\end{document}

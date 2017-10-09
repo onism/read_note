@@ -1,0 +1,127 @@
+
+\documentclass[runningheads,a4paper]{llncs}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{natbib}
+\bibliographystyle{apalike-fr}
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+
+\usepackage[french]{babel} % Pour adopter les règles de typographie française
+\usepackage[T1]{fontenc} % Pour que les lettres accentuées soient reconnues
+
+\usepackage{url}
+\urldef{\mailsa}\path|{alfred.hofmann, ursula.barth, ingrid.haas, frank.holzwarth,|
+\urldef{\mailsb}\path|anna.kramer, leonie.kunz, christine.reiss, nicole.sator,|
+\urldef{\mailsc}\path|erika.siebert-cole, peter.strasser, lncs}@springer.com|
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+\begin{document}
+
+\mainmatter
+
+\title{PHD filter}
+
+\titlerunning{PHD filter}
+
+\author{Junjie Wang}
+
+\institute{Harbin Institue of Technology}
+
+\authorrunning{Harbin Institue of Technology}
+
+\toctitle{}
+\tocauthor{{}}
+
+\maketitle
+
+\begin{abstract}
+...
+\end{abstract}
+
+\medskip
+
+\begingroup
+\let\clearpage\relax
+\tableofcontents
+\addcontentsline{toc}{section}{Introduction}
+\endgroup
+
+\medskip
+\medskip
+
+
+\section{Sensor management with regional statistics
+for the PHD filter}
+
+This paper investigates a sensor management scheme that aims at minimising the regional variance in the number of objects present in regions of interest whilst perfroming PHD filter.
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Footnotes}
+
+The superscript numeral used to refer to a footnote appears in the text
+either directly after the word to be discussed or -- in relation to a
+phrase or a sentence -- following the punctuation sign (comma,
+semicolon, or period). Footnotes should appear at the bottom of
+the
+normal text area, with a line of about 2~cm set
+immediately above them.\footnote{The footnote numeral is set flush left
+and the text follows with the usual word spacing.}
+
+\subsection{Program Code}
+
+Program listings or program commands in the text are normally set in
+typewriter font, e.g., CMTT10 or Courier.
+
+\section{Deuxième section}
+
+\subsection{ainsi de suite...}
+
+\medskip
+
+\noindent
+{\it Example of a Computer Program}
+\begin{verbatim}
+program Inflation (Output)
+  {Assuming annual inflation rates of 7%, 8%, and 10%,...
+   years};
+   const
+     MaxYears = 10;
+   var
+     Year: 0..MaxYears;
+     Factor1, Factor2, Factor3: Real;
+   begin
+     Year := 0;
+     Factor1 := 1.0; Factor2 := 1.0; Factor3 := 1.0;
+     WriteLn('Year  7% 8% 10%'); WriteLn;
+     repeat
+       Year := Year + 1;
+       Factor1 := Factor1 * 1.07;
+       Factor2 := Factor2 * 1.08;
+       Factor3 := Factor3 * 1.10;
+       WriteLn(Year:5,Factor1:7:3,Factor2:7:3,Factor3:7:3)
+     until Year = MaxYears
+end.
+\end{verbatim}
+%
+\noindent
+{\small (Example from Jensen K., Wirth N. (1991) Pascal user manual and
+report. Springer, New York)}
+
+\bibliography{references}
+\nocite{*}
+
+\end{document}

@@ -233,6 +233,34 @@ The information gathered so far by the operator on any target $y \in Y_{t-1}$, d
 \subsubsection{Hypothesis prediction}
 Since the observation set $Z_t$ is not available yet, neither the observation paths in $Y_{t-1}$ nor the composition of the hypotheses in $H_{t-1}$ are modified by the prediction step.
 \subsection{DISP filter: Data Update}
+\paragraph{Input}
+a couple $h \in H_{t-1}, n \in \mathcal{N}$ can be seen as a realisation of the population with a) $|h|$ previously detected individuals described by the targets $y \in h$ and b) $n$ appearing individuals
+
+
+The core of the update step consists in the data association, where potential sources of observations are matched with the new observation set $Z_t$, and every resulting association is assessed.
+
+A valid association $h$ is an element of the set
+\[
+\text{Adm}_{z_t}(h,n) = \left\{(h_d,Z_d,Z_a,v)|h_d \subseteq h, Z_d \subseteq Z_t ,Z_a \subseteq Z_t \setminus Z_d, |Z_a| = n, v \in S(h_d,Z_d) \right\}
+\]
+where $h_d$ designs the tracks that are detected, $Z_d$ the observations associated to these detected tracks, $Z_a$ the observations associated to the $n$ appearing targets, and $v$ the bijective function assoicating detected tracks to observations in $Z_d$.
+
+
+\section{MULTI-OBJECT FILTERING FOR SPACE SITUATIONAL
+AWARENESS}
+A track is defined by a pair with an observation path $y \in Y_{t-1}$ and the corresponding probability distribution $p_{t-1}^y$.
+
+The possible configuration of individuals that have entered the scene since the begining of the scenario are described by all the subsets of observation paths $h \in Y_t$, called hypotheses. Any pair of distinct observation paths belonging to a common hypothesis $y, y^' \in h$ do not share a common measuremment. The set of all hypotheses propagated from the previous time step is denoted by $H_{t-1}$, and the DISP filter maintains a cardinality distribution $c_{t-1}$ on the hypotheses such that
+\[
+\sum_{h\in H_{t-1}} c_{t-1}(h) = 1
+\]
+
+Note that a given observation path $y \in Y_{t-1}$ may belong to several hypotheses $h \in H_{t-1}$. For every pbservation path $y \in Y_{t-1}$ the scalar
+\[
+\alpha_{t-1}^y = \sum_{h \in H_{t-1}, y\in h} c_{t-1}(h)
+\]
+denotes the credibility of probability of existence of target $y$.
+
 
 
 \section{Novel Multi-Object Filtering Approach for Space

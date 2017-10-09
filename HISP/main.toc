@@ -1,0 +1,21 @@
+\contentsline {section}{\numberline {1}A filter for distinguishable and independent populations}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Bayesian Estimation with Stochastic Populcations}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}DISP filter: Target Representation}{4}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Prediction}{5}{subsection.1.3}
+\contentsline {subsubsection}{\numberline {1.3.1}Track prediction}{5}{subsubsection.1.3.1}
+\contentsline {subsubsection}{\numberline {1.3.2}Hypothesis prediction}{5}{subsubsection.1.3.2}
+\contentsline {subsection}{\numberline {1.4}DISP filter: Data Update}{5}{subsection.1.4}
+\contentsline {paragraph}{Input}{5}{section*.2}
+\contentsline {section}{\numberline {2}Novel Multi-Object Filtering Approach for Space Situational Awareness}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}Multi-Object Estimation with DISP filter}{6}{subsection.2.1}
+\contentsline {section}{\numberline {3}Multi-target filtering with linearised complexity}{6}{section.3}
+\contentsline {section}{\numberline {4}Multi-object filtering with stochastic populations}{6}{section.4}
+\contentsline {section}{\numberline {5}Hypothesised filter for independent stochastic populations}{6}{section.5}
+\contentsline {subsection}{\numberline {5.1}The HISP filter}{7}{subsection.5.1}
+\contentsline {subsubsection}{\numberline {5.1.1}Initialisation}{7}{subsubsection.5.1.1}
+\contentsline {subsubsection}{\numberline {5.1.2}Time update}{7}{subsubsection.5.1.2}
+\contentsline {subsection}{\numberline {5.2}Observation update}{7}{subsection.5.2}
+\contentsline {section}{\numberline {6}Tracking with MIMO sonar systems: applications to harbour surveillance}{7}{section.6}
+\contentsline {section}{\numberline {7}A SEQUENTIAL MONTE CARLO APPROXIMATION OF THE HISP FILTER}{8}{section.7}
+\contentsline {subsection}{\numberline {7.1}Population modelling}{9}{subsection.7.1}
+\contentsline {subsubsection}{\numberline {7.1.1}State}{9}{subsubsection.7.1.1}
