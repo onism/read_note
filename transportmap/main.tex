@@ -142,6 +142,8 @@
 \end{tabular}
 
 
+\tableofcontents
+
 \newpage
 
 \section{An introduction to sampling via measure transport}
@@ -350,13 +352,89 @@ where $\mathcal{J}$ is a set of multi-indices defining the polynomial terms in t
 
 \subsubsection{Radial basis functions}
 An alternative to a polynomial parameterization of the map is to employ a combination of linear term and radar basis functions. This representation can be more efficient than a polynomail representation in certain cases.
+\[
+T^k(x) = a_{k,0} + \sum_{j=1}^k a_{k,j}x_j + \sum_{j=1}^{P_k} b_{k,j}\phi_j(x_1,...x_k;\bar{x}^{k,j}),k=1,...,n,
+\]
+where $P_k$ is the total number of radial basis functions used for the $k$th component of the map and $\phi_j(x_1,...x_k;\bar{x}^{k,j})$ is a radial basis function centered at $\bar{x}^{k,j}$.
+
+\emph{Parno, M.: Transport maps for accelerated Bayesian computation. Ph.D. thesis, Massachusetts Institute of Technology (2014). proposes using only univariate radial basis functions and embedding them within a composition of maps}
+
+\subsubsection{Monotonicity constraints and monotone parameterizations}
+
+Neither the polynomial representation nor the radial basis function representation yield monotone maps for all values of the coefficients. With either of these choices for the approximation space, we need to enforce the monotoicity constraints explicitly.
+
+\subsection{Related work}
+
+\subsubsection{Implicit sampling}
+\emph{Chorin, A., Morzfeld, M., Tu, X.: Implicit particle filters for data assimilation. Communications in Applied
+Mathematics and Computational Science 5(2), 221–240 (2010)}
+
+\emph{ Chorin, A.J., Tu, X.: Implicit sampling for particle filters. Proceedings of the National Academy of Sciences
+106(41), 17,249–17,254 (2009)}
+
+The central equation in implicit sampling methods is:
+\begin{equation}\label{eq:implicitsampling}
+log \bar{\pi}(z) - \mathcal{C} = log \eta(x)
+\end{equation}
+where $\mathcal{C}$ is an easily computed constant. Implicit sampling first draws a sample $x_i$ from the reference density $\eta$ and then seeks a corresponding $z_i$ that satisfies \eqref{eq:implicitsampling}.
+
+There are several interesting contrasts.
+\begin{itemize}
+  \item First is the absence of the Jacobian determinant in \eqref{eq:implicitsampling}.
+  \item Global statement about the action of a map $T$ over the entire support of $\eta$, wherin the map $T$ appears explicitly.
+\end{itemize}
 
 
 
+\subsubsection{RTO}
+\emph{
+  Bardsley, J.M., Solonen, A., Haario, H., Laine, M.: Randomize-then-optimize: A method for sampling
+from posterior distributions in nonlinear inverse problems. SIAM Journal on Scientific Computing 36(4),
+A1895–A1910 (2014)
+github: https://github.com/wang-zheng/RandomizeThenOptimize.jl
+code: http://helios.fmi.fi/~lainema/rto/
+}
 
 
+This scheme is well-defined for target distributions whose log-densities can be written in a particular quadeatic form following a transformation of the parameters with some restrictions on the target's degree of non-Gaussianity.
+\begin{itemize}
+  \item 1. draws a sample $x_i$ from a Gaussian measure
+  \item 2. uses this sample to fix the objective of an unconstrained optimization problem in $n$ variables.
+  \item 3. solves this optimization problem to obtain a sample $z_i$
+  \item 4: the sample is "corrected" either via an importance weight or Metropolis step.
+\end{itemize}
 
+outside of the Gaussian case these two distributions will not be identical and
+the correction step is required.
 
+These transports cannot be refined, and it is difficult to predict their quality
+for arbitrarily non-Gaussian targets.
+
+\subsection{Conclusion}
+
+So far, the transport map framework has been deployed successfully in a number of challenging
+applications:
+\begin{itemize}
+\item high-dimensional non-Gaussian Bayesian inference involving expensive forward models
+\item multiscale methods for Bayesian inverse problems
+\item non-Gaussian proposals for MCMC algorithms
+\item Bayesian optimal experimental design
+\end{itemize}
+ Ongoing and future applications of the framework
+ \begin{itemize}
+    \item  sequential data assimilation(Bayesian filtering and smoothing)
+    \item  statistical modeling via non-Gaussian Markov random fields
+    \item  density estimation and inference in likelihood-free settings(with radar and image data)
+    \item  rare event simulation
+ \end{itemize}
+
+ \subsection{Example using TransportMaps tool}
+ \subsubsection{Available approximations}
+ Let us consider the random variable $X$ distributed accordingly to the Gumbel distribution, with density
+ \[
+\pi(x) = \frac{1}{\beta} exp(-z - exp(-z))
+ \]
+ where
 
 
 
