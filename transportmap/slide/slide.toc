@@ -1,0 +1,7 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {british}
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Optimal Transport Map}{8}{0}{2}
+\beamer@sectionintoc {3}{Relation to the Particle Filter}{16}{0}{3}
+\beamer@subsectionintoc {3}{1}{Relation to the particle flow filter}{16}{0}{3}
+\beamer@subsectionintoc {3}{2}{Coupling Particle Filter}{19}{0}{3}
