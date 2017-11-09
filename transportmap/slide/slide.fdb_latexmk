@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1508312196 "slide.tex" "slide.pdf" "slide" 1508312219
+["pdflatex"] 1508458091 "slide.tex" "slide.pdf" "slide" 1508458093
   "/Users/junjie/Library/texlive/2016/texmf-var/web2c/pdftex/pdflatex.fmt" 1489809167 3873397 7c8e46a900b51daa884f3470beaced4b ""
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -220,16 +220,16 @@
   "img/pirorposterior2.png" 1508140443 182595 31c6ccc073960ac8127ae8f984a2117e ""
   "img/pirorposterior3.png" 1508140524 243532 bb27cfb30ed2a7353730a257bcc4117a ""
   "img/viewpoint.png" 1508141082 100866 e11784943c4a825812a2e5c2a3c0dedc ""
-  "slide.aux" 1508312198 6207 02ef60a1ba0c968d7137b390eb8200a6 ""
-  "slide.nav" 1508312198 3362 77e7117bbe2d30c47b7f8422b4658210 ""
-  "slide.out" 1508312198 329 9caee564539ceb4409484d04ddb5dd3e ""
-  "slide.tex" 1508312196 11288 8c024e902e1b0915f7541b80d07f8894 ""
-  "slide.toc" 1508312198 386 eb318a4b4b0129bc1ab659d157455402 ""
+  "slide.aux" 1508458093 6410 13267d95af3e7c9a0ed5cc631d52194e ""
+  "slide.nav" 1508458093 3511 8c2b64bbb9fe3a178b5b029f161e520e ""
+  "slide.out" 1508458093 329 bb3e44cd37f64f96d1799e472069524d ""
+  "slide.tex" 1508458090 11258 53b72c1f54c3ba3aaefeb5246cedc707 ""
+  "slide.toc" 1508458093 386 399dd1006b687d4f0e9ea7fadef8d5d2 ""
   (generated)
-  "slide.nav"
+  "slide.toc"
   "slide.pdf"
-  "slide.snm"
   "slide.aux"
+  "slide.nav"
+  "slide.snm"
   "slide.out"
   "slide.log"
-  "slide.toc"

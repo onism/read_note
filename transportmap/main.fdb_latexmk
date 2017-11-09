@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1508312360 "main.tex" "main.pdf" "main" 1508312361
+["pdflatex"] 1508313033 "main.tex" "main.pdf" "main" 1508313038
   "/Users/junjie/Library/texlive/2016/texmf-var/web2c/xetex/xelatex.fmt" 1489809159 3520375 b994d49a1bf34c31827bec7812e2a8c7 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/adobe/palatino/pplb7t.tfm" 1136768653 1616 371d1ee60c04b008c8fd760060cd34f1 ""
@@ -146,17 +146,17 @@
   "/usr/local/texlive/2016/texmf-dist/tex/xelatex/xetex-def/xetex.def" 1460062404 21052 2a1a30b53c57c3b04e71c305475a35fc ""
   "/usr/local/texlive/2016/texmf-dist/web2c/texmf.cnf" 1463093894 31953 b9489e6e586f798610c60aec1f5ec548 ""
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
-  "main.aux" 1508312361 6296 dbb2645c9c9268efb0e649b2e9bb4a87 ""
-  "main.out" 1508312361 8232 f310d569f17f057e85969a53a66318eb ""
-  "main.tex" 1508312216 33445 426c21d6277fdcb4441b0dd4d5c9dba9 ""
-  "main.toc" 1508312361 3674 f97b8d436cc4e2423718475caab8cc6e ""
+  "main.aux" 1508313034 6296 dbb2645c9c9268efb0e649b2e9bb4a87 ""
+  "main.out" 1508313034 8232 f310d569f17f057e85969a53a66318eb ""
+  "main.tex" 1508313032 33511 b35a28d3a6e8cbebc1a7e429abadbb63 ""
+  "main.toc" 1508313034 3674 f97b8d436cc4e2423718475caab8cc6e ""
   "pythonhighlight.sty" 1507543392 4822 44a39a68d852c9742af161f7166b2a03 ""
   "src/approximations.py" 1507686235 2557 e27d24451ebef1b23d27d261a6dca3ed ""
   "src/figs/GumbelTransportMap.pdf" 1507686566 29809 a9c4e28251282db7d88cee2e5f7b1721 ""
   "src/hermite.py" 1507543278 901 e44187a3ed2e3a9fc00495a59953d886 ""
   (generated)
   "main.log"
-  "main.aux"
   "main.pdf"
-  "main.toc"
   "main.out"
+  "main.toc"
+  "main.aux"
