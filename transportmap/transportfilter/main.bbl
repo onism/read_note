@@ -1,0 +1,15 @@
+\begin{thebibliography}{1}
+
+\bibitem{spantini2017low}
+Alessio Spantini.
+\newblock {\em On the low-dimensional structure of Bayesian inference}.
+\newblock PhD thesis, Massachusetts Institute of Technology, 2017.
+
+\bibitem{liu2016stein}
+Qiang Liu and Dilin Wang.
+\newblock Stein variational gradient descent: A general purpose bayesian
+  inference algorithm.
+\newblock In {\em Advances In Neural Information Processing Systems}, pages
+  2378--2386, 2016.
+
+\end{thebibliography}

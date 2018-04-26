@@ -11,6 +11,7 @@
 \usepackage{tikz,mathpazo}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 \usetikzlibrary{shapes.geometric, arrows}
 %%%%%% 设置字号 %%%%%%
 \newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
@@ -74,41 +75,16 @@
 \begin{document}
 \begin{CJK}{UTF8}{gbsn}
 
-%%%% 定理类环境的定义 %%%%
-\newtheorem{example}{例}             % 整体编号
-\newtheorem{algorithm}{算法}
-\newtheorem{theorem}{定理}[section]  % 按 section 编号
-\newtheorem{definition}{定义}
-\newtheorem{axiom}{公理}
-\newtheorem{property}{性质}
-\newtheorem{proposition}{命题}
-\newtheorem{lemma}{引理}
-\newtheorem{corollary}{推论}
-\newtheorem{remark}{注解}
-\newtheorem{condition}{条件}
-\newtheorem{conclusion}{结论}
-\newtheorem{assumption}{假设}
-
-%%%% 重定义 %%%%
-\renewcommand{\contentsname}{目录}  % 将Contents改为目录
-\renewcommand{\abstractname}{摘要}  % 将Abstract改为摘要
-\renewcommand{\refname}{参考文献}   % 将References改为参考文献
-\renewcommand{\indexname}{索引}
-\renewcommand{\figurename}{图}
-\renewcommand{\tablename}{表}
-\renewcommand{\appendixname}{附录}
-\renewcommand{\algorithm}{算法}
 
 
-%%%% 定义标题格式，包括title，author，affiliation，email等 %%%%
-\title{ 阅读论文综述}
-\author{王俊杰\footnote{电子邮件: wangjunjie2013@gmail.com}\\[2ex]
-\xiaosihao 哈尔滨工业大学\\[2ex]
+
+\title{HISP filter}
+\author{Junjie Wang\footnote{email: wangjunjie2013@gmail.com}\\[2ex]
+ Harbin Insititue of Technology\\[2ex]
 }
 \date{}
 
 
-%%%% 以下部分是正文 %%%%
 \maketitle
 
 
@@ -250,7 +226,7 @@ where $h_d$ designs the tracks that are detected, $Z_d$ the observations associa
 AWARENESS}
 A track is defined by a pair with an observation path $y \in Y_{t-1}$ and the corresponding probability distribution $p_{t-1}^y$.
 
-The possible configuration of individuals that have entered the scene since the begining of the scenario are described by all the subsets of observation paths $h \in Y_t$, called hypotheses. Any pair of distinct observation paths belonging to a common hypothesis $y, y^' \in h$ do not share a common measuremment. The set of all hypotheses propagated from the previous time step is denoted by $H_{t-1}$, and the DISP filter maintains a cardinality distribution $c_{t-1}$ on the hypotheses such that
+The possible configuration of individuals that have entered the scene since the begining of the scenario are described by all the subsets of observation paths $h \in Y_t$, called hypotheses. Any pair of distinct observation paths belonging to a common hypothesis   do not share a common measuremment. The set of all hypotheses propagated from the previous time step is denoted by $H_{t-1}$, and the DISP filter maintains a cardinality distribution $c_{t-1}$ on the hypotheses such that
 \[
 \sum_{h\in H_{t-1}} c_{t-1}(h) = 1
 \]
@@ -380,6 +356,38 @@ We are now in position to build a full index set in which each individual in the
 \mathbb{I}_t = \mathbb{I}_t^m \cup \left\{i_t^a,i_t^b \right\}
 \end{equation}
 where, denoting $[\cdot,t]$ the abstrct time interval ending at time $t$, $\mathbb{I}_t^m = \left\{(\sharp,[\cdot,t],y): y \in Y_{t-1} \right\}$ corresponds to the detected individuals, where $i_t^a = (\sharp,{t},\phi_t)$ describes newborn individuals, where the spurious-observation generators index is $i_t^b = (b,\emptyset,\phi_t)$.
+
+
+
+\section{Multi-target filtering with linearised complexity}
+The difficulty of this task is further amplified by the fact that targets in the system appear and disappear at unknown times.
+The main challenge with MTT is the absence of a priori information about data association, i.e. about the association between the received observations and the different targets being estimated.
+
+For any $t$, the state and observation spaces, denoted $\mathbf{X} = \mathbf{X}^{\bullet} \cup \{ \psi_{\sharp}, \psi_b \}$ and $\mathbf{Z} = \mathbf{Z}^{\bullet} \cup \{ \varnothing \}$ respectively.
+
+\subsection{Single-target modelling}
+Three (sub-)transition functions $q_t^{\iota}$ from $\mathbf{X}$ to itself indexed by $\iota \in \{\alpha,\pi,\omega \}$ are introduced in order to model the motion as well as the appearance and disappearance of targets between times $t-1$ and $t$.
+
+
+In order to use these transitions in the HISP filter, they have to be extended to include the point $\varphi$ as well. For any $\iota \in \{\alpha,\pi,\omega \}$ the transition function $\bar{q}_t^{\iota}$ from $\bar{\mathbf{X}}$ to $\bar{\mathbf{X}}$ is defined as
+\begin{equation}
+\bar{q}_t^{\iota} =  \left\{
+\begin{aligned}
+ q_t^{\iota}(x^{'}|x) & \qquad \text{if} \quad  x^{'},x \in \mathbf{X} \\
+ 1 - \int  q_t^{\iota}(x^{''}|x) d x^{''} & \qquad \text{if} \quad x \in \mathbf{X} \quad \text{and}  \quad x^{'} = \varphi\\
+ 1 & \qquad \text{if} \quad x \in \varphi \quad \text{and}  \quad x^{'} = \varphi\\
+\end{aligned}
+\right.
+\end{equation}
+
+This can be considered as the natural extension of a transition function from $\mathbf{X}$ to $\mathbf{X}$ to the corresponding extended spaces. The transition $q_t^{\alpha}$ has a multiplicity $n_t^{\alpha}$, meaning that it is used exactly $n_t^{\alpha}$ times.
+
+\textbf{Likelihood:}
+
+Let $\ell_t^d$ be a likelihood from $\bar{\mathbf{X}}$ to $\mathbf{Z}$ describing the possible detection of targets and verifying
+\begin{equation}
+\ell_t^d(\phi | \psi_{\sharp}) = \ell_t^d(\phi | \varphi) = 1
+\end{equation}
 
 \end{CJK}
 \end{document}

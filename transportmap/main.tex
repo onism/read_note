@@ -625,7 +625,27 @@ Intuitively, we want to choose  $P \in \mathcal{J}(w,\tilde{w})$ such that, upon
 The expected distance between the resampled particles $x^a$ and $\tilde{x}^{\tilde{a}}$, conditional upon $(w,x)$ and $(\tilde{w},\tilde{x})$, is given by $\sum_{i=1}^N \sum_{j=1^N} P^{ij}d(x^i,\tilde{x}^j)$. Denote by $D$ the distance matrix with entries $D^{ij} = d(x^i,\tilde{x}^j)$. The optimal transport problem considers a matrix $P^*$ that minimizes the expected distance over all $P \in \mathcal{J}(w,\tilde{w})$.
 
 
+\section{Inference via low-dimensional couplings}
+
+\subsection{Triangular transport maps: a building block}
+An essential feature of the trangular transport map is its anisotropic dependence on the input variables. That is, even though each component of the transport map does not depend on all $n$ inputs, the map is still capable of coupling arbitrary probability distribution.
+
+All these approaches face a fundamental challenge: the transport map is a function from $\mathbb{R}^n$ on itself, and in high dimensions the representation and approximation of such functions becomes increasingly intractable.
+
+\subsection{Markov networks}
+Let $\mathbf{Z} = (Z_1,...,Z_n)$ be a collection of random variables with law $v_{\pi}$ and density $\pi$. We can represent a list of conditional independences satisfied by $\mathbf{Z}$-the so-called Markov properties-using a simple undirected graph $\mathcal{G} = (\mathcal{V},\mathcal{E})$, where each node $k \in \mathcal{V}$ is associated with a distinct random variable, $Z_k$, and where the edges in $\mathcal{E}$ encode a specific notion of probabilisitic interaction among these random variables.
+\subsection{Sparisty of triangular transport maps}
+A sparse map is a multivariate function where each comonent does not depend on all its input variables.
+\subsubsection{Sparisity bounds}
 
 
+
+\section{local couplings filter}
+The idear of local couplings filter is a generalization of the EnKF phiosophy, and can be synthesized as follows: we seek to transorm the forecast ensemble into samples from the filtering distribution by means of a sequence of local, low-dimensional, and possibly nonlinear deterministic couplings.
+
+We have a coolection of random variables, $Z = (Z_1,...,Z_n)$ and $Y$. We should think of $Z$ as a random variable on $\mathcal{R}^n$ distributed according to the forecast distribution at a certain time $t$, whereas we can think of $Y$ as a random variable corresponding to the observed data at the same assimilation time.
+
+\subsection{local assimilation}
+First, we need sample from $\pi_{Z_1|Y}$
 \end{CJK}
 \end{document}
