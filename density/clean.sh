@@ -1,0 +1,1 @@
+rm *.tex *.aux *.gz *.pdf *.log *.out

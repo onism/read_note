@@ -1,8 +1,18 @@
-## Inverse Transport
+ # Parameters of TM
+ The basic principle of the transport methodology is to determine a mapping $T$ relating a base distribution $\eta$ to a potentially target distribution $\tilde{\pi}$. More precisely, the considered mapping $T$ is characterised by
 
-Let $\{x_i\}_{i=1}^{\infty}$ be a MC sample of a random variable $\mathbf{X}$ with unknown distribution $v_{\pi}$. Our goal is to characterize this distribution, given a finite sample $\{x_i\}_{i=1}^n$ from $\mathbf{X}$ . We then look for the map $\hat{S}$ such that 
-$$
-\hat{S} = \arg \min_{S \in \mathcal{T}_{\Delta}} D_{KL}(S_{\sharp}v_{\pi}|v_{\rho})
-$$
-For the sake of this sythetic example we enforce $X \sim \text{Gumbel}(\mu,\beta)$ with $\mu=3$ and $\beta = 4$. 
+ $$
+T_{\sharp} \eta(x) = \eta(T^{-1}(x))|det \nabla T^{-1}(x)| = \tilde{\pi}
+ $$
 
+The problem at time $p$ can be solved by introducing a mapping $T_p$ of the form
+
+$$
+T_p(x_p, x_{p+1}) = \begin{bmatrix} T_p^0(x_p, x_{p+1}) \\ T_p^1(x_{p+1}) \end{bmatrix}
+$$
+ 
+which will transform the 2D base distrbution $\eta_{2d}$ into a target distribution related to the considered HMM. This target distribution can be expressed as 
+
+$$
+\tilde{\pi}(x_p,x_{p+1}) \propto \eta_d (x_p) f(T^1_{p-1}(x_p), x_{p+1}) g(x_{p+1},y_{p+1})
+$$
