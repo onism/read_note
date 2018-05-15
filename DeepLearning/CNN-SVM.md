@@ -19,3 +19,4 @@ SVM learns the parameters $w$ by solving an optimization problem:
 The distinction of CNN from a plain MLP is its usage of convoluntional layers, pooling, and non-linearities such as tanh, sigmoid, and ReLU.
 
 Intuitively speaking, the CONV layer is used to slide through the width and height of an input image, and compute the dot product of the input's region and the weight learning parameters.  This in turn will produce a 2-d activation map that consists of responses of the filter at given regions.
+
