@@ -1,0 +1,3 @@
+# Tracking of a Mobile Target Using Generalized Polarization Tensors
+
+In this paper, the authors apply an extended Kalman filter to track both the location and the orientation of a mobile target  from multistatic response measurements. This algorithm is based on the use of the generalized polarization tensors, which can be reconstructed from the multistatic response measurements by solving a linear system.
